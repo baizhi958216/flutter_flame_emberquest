@@ -1,8 +1,11 @@
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
+import 'package:flutterflamegame/actors/ember.dart';
 
 class EmberQuestGame extends FlameGame {
   EmberQuestGame();
+
+  late EmberPlayer _emberPlayer;
   
   final world = World();
   late final CameraComponent cameraComponent;
@@ -23,5 +26,8 @@ class EmberQuestGame extends FlameGame {
     cameraComponent = CameraComponent(world: world);
     cameraComponent.viewfinder.anchor = Anchor.topLeft;
     addAll([cameraComponent, world]);
+
+    _emberPlayer = EmberPlayer(position: Vector2(128, canvasSize.y - 70),);
+    world.add(_emberPlayer);
   }
 }
