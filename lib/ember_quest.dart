@@ -19,6 +19,9 @@ class EmberQuestGame extends FlameGame {
   final world = World();
   late final CameraComponent cameraComponent;
 
+  late double lastBlockXPosition = 0.0;
+  late UniqueKey lastBlockKey;
+
   // 重载onLoad(), 启动的时候把资产先加载
   @override
   Future<void> onLoad() async {
@@ -49,6 +52,12 @@ class EmberQuestGame extends FlameGame {
     for (final block in segments[segmentIndex]) {
       switch (block.blockType) {
         case GroundBlock:
+          add(
+            GroundBlock(
+              gridPosition: block.gridPosition,
+              xOffset: xPositionOffset,
+            ),
+          );
           break;
         case PlatformBlock:
           add(PlatformBlock(
